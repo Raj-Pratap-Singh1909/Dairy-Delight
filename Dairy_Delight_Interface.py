@@ -660,99 +660,10 @@ while True:
                                 print(
                                     "Your order value is more than the available balance in your wallet"
                                 )
-                                print(
-                                    "\n\n\t\t\t Choose the mode of payment!\n\t\t\t1. UPI\n\t\t\t2. Cash on Delivery\n\t\t\t3. Card Payment\n\n"
-                                )
-                                mode_of_pay = int(input("Enter your choice here: "))
-                                if mode_of_pay == 1:
-                                    print(
-                                        "the amount payable: "
-                                        + str(cart_of_customer.tot)
-                                    )
-                                    input("press enter to pay ahead")
-                                    upi = input("enter your upi id: ")
-                                    pin = str(input("enter your upi pin: "))
-                                    if len(pin) == 4:
-                                        print("payment successful!!")
-                                        # code to enter new order_id  and entry in orders table.
-                                        from datetime import datetime
-
-                                        date_time = datetime.fromtimestamp(time_stamp)
-                                        str_date = date_time.strftime(" %B %d, %Y")
-                                        str_time = date_time.strftime("%I:%M %p")
-                                        data_cursor.execute(
-                                            f'  INSERT INTO orders (amount,delivery_date,time_stamps,customer_id) VALUES ({cart_of_customer.tot},"{str_date}","{str_time}",{customer_.id});'
-                                        )
-                                        check.commit()
-                                        data_cursor.execute(
-                                            f"select order_id from orders where orders.time_stamps = {str_time};"
-                                        )
-                                        customer_.order_id = int(
-                                            data_cursor.fetchall()[0][0]
-                                        )
-                                        data_cursor.execute(
-                                            f'  INSERT INTO invoice VALUES ("UPI","{customer_.emailid}",{customer_.order_id});'
-                                        )
-                                        check.commit()
-                                        print("success")
-                                        input("press enter to go back  to the menu")
-                                if mode_of_pay == 2:
-                                    print(
-                                        "the amount payable at the time of delivery: "
-                                        + str(cart_of_customer.tot)
-                                    )
-                                    input("press enter to continue.")
-                                    from datetime import datetime
-
-                                    date_time = datetime.fromtimestamp(time_stamp)
-                                    str_date = date_time.strftime(" %B %d, %Y")
-                                    str_time = date_time.strftime("%I:%M %p")
-                                    data_cursor.execute(
-                                        f"  INSERT INTO orders (amount,delivery_date,time_stamps,customer_id) VALUES ({cart_of_customer.tot},{str_date},{str_time},{customer_.id});"
-                                    )
-                                    check.commit()
-                                    data_cursor.execute(
-                                        f"select order_id from orders where orders.time_stamps = {str_time};"
-                                    )
-                                    customer_.order_id = int(
-                                        data_cursor.fetchall()[0][0]
-                                    )
-                                    data_cursor.execute(
-                                        f'  INSERT INTO invoice VALUES ("Cash","{customer_.emailid}",{customer_.order_id});'
-                                    )
-                                    check.commit()
-                                    print("success")
-                                    input("press enter to go to back menu")
-                                if mode_of_pay == 3:
-                                    print(
-                                        "the amount payable: "
-                                        + str(cart_of_customer.tot)
-                                    )
-                                    input("press enter to pay ahead")
-                                    upi = input("enter your card number: ")
-                                    pin = str(input("enter your upi pin: "))
-                                    if len(pin) == 4:
-                                        print("payment successful!!")
-                                        # code to enter new order_id  and entry in orders table.
-                                        from datetime import datetime
-
-                                        date_time = datetime.fromtimestamp(time_stamp)
-                                        str_date = date_time.strftime(" %B %d, %Y")
-                                        str_time = date_time.strftime("%I:%M %p")
-                                        data_cursor.execute(
-                                            f"  INSERT INTO orders (amount,delivery_date,time_stamps,customer_id) VALUES ({cart_of_customer.tot},{str_date},{str_time},{customer_.id});"
-                                        )
-                                        check.commit()
-                                        data_cursor.execute(
-                                            f"select order_id from orders where orders.time_stamps = {str_time};"
-                                        )
-                                        customer_.order_id = int(
-                                            data_cursor.fetchall()[0][0]
-                                        )
-                                        data_cursor.execute(
-                                            f'  INSERT INTO invoice VALUES ("Credit/Debit_card","{customer_.emailid}",{customer_.order_id});'
-                                        )
-                                        check.commit()
+                                # print(
+                                #     "\n\n\t\t\t Choose the mode of payment!\n\t\t\t1. UPI\n\t\t\t2. Cash on Delivery\n\t\t\t3. Card Payment\n\n"
+                                # )
+                                mode_of_pay = input("Press enter to continue ")
                             else:
                                 from datetime import datetime
 
